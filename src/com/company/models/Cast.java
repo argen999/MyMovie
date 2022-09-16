@@ -1,5 +1,7 @@
 package com.company.models;
 
+import java.util.Comparator;
+
 public class Cast {
 
     private String fullName;
@@ -12,4 +14,5 @@ public class Cast {
     public String getRole() {
         return role;
     }
+
 }

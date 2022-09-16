@@ -1,6 +1,8 @@
 package com.company;
 
 import com.company.models.Movie;
+import com.company.services.impl.FindAbleImpl;
+import com.company.services.impl.SortAbleImpl;
 
 import java.util.List;
 import java.util.Scanner;
@@ -10,9 +12,40 @@ public class Main {
     private static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
+        String number = "";
+        SortAbleImpl allMethodSortAble = new SortAbleImpl();
+        FindAbleImpl allMethodFindAble = new FindAbleImpl();
+        while (!number.equals("x")) {
+            commands();
+            button();
+            number = in.nextLine();
+            try {
+                for (int i = 0; i < number.length(); i++) {
+                    if (Character.isDigit(number.charAt(i) ) ) {
+                        switch (number) {
+                            case "1" -> allMethodSortAble.printAllMovies();
+                            case "2" -> allMethodSortAble.findMovie();
+                            case "3" -> allMethodSortAble.sortByYear();
+                            case "4" -> allMethodSortAble.sortByName();
+                            case "5" -> allMethodSortAble.sortByDirector();
+                            case "6" -> allMethodFindAble.findMoviesByActor();
+                            case "7" -> allMethodFindAble.findMoviesByDirector();
+                            case "8" -> allMethodFindAble.findMoviesByYear();
+                            case "9" -> allMethodFindAble.findMoviesAndRoleByActor();
+                            case "10" -> allMethodFindAble.showActorRoles();
+                            default -> System.out.println("Андай метод жок!");
+                        }
+                    } else {
+                        throw new MyException();
+                    }
+                }
+            } catch (MyException e) {
+                System.out.println("You spelled it wrong!");
+            }
+
+        }
 
     }
-
 
     static void commands() {
         System.out.println("--------------Commands-----------------------");
@@ -30,7 +63,8 @@ public class Main {
     }
 
     static String button(){
-        System.out.println("Choose a command: ");
-        return in.nextLine();
+        String word = new String("Choose a command: ");
+        System.out.println(word);
+        return word;
     }
 }
